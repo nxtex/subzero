@@ -13,7 +13,7 @@ import {
   estimatedMonthly,
   realMonthly,
   upcomingRenewals,
-  zombieSubscriptions,
+  unusedSubscriptions,
 } from '../data/subscriptions';
 import { SubscriptionItem } from '../components/SubscriptionItem';
 
@@ -329,7 +329,7 @@ export function Dashboard() {
             <div style={{ color: '#5B638A', fontSize: '11px' }}>cette semaine</div>
           </div>
 
-          {/* Zombies Alert */}
+          {/* Non utilisés Alert */}
           <div
             onClick={() => navigate('/abonnements')}
             style={{
@@ -364,12 +364,12 @@ export function Dashboard() {
                 marginBottom: '4px',
               }}
             >
-              {zombieSubscriptions.length}
+              {unusedSubscriptions.length}
             </div>
             <div style={{ color: '#9BA3C7', fontSize: '12px' }}>
               Abonnements
             </div>
-            <div style={{ color: '#5B638A', fontSize: '11px' }}>zombies 🧟</div>
+            <div style={{ color: '#5B638A', fontSize: '11px' }}>non utilisés</div>
           </div>
         </div>
 
