@@ -1,6 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router';
 import { BottomNav } from './BottomNav';
+import { StartupModal } from './StartupModal';
 
 export function Root() {
   return (
@@ -32,6 +33,7 @@ export function Root() {
           <Outlet />
         </div>
         <BottomNav />
+        <StartupModal />
       </div>
     </div>
   );
