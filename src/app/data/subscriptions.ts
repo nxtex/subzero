@@ -1,4 +1,4 @@
-export type BadgeType = 'zombie' | 'renewal' | 'info' | null;
+export type BadgeType = 'non-utilise' | 'renewal' | 'info' | null;
 
 export interface Subscription {
   id: string;
@@ -120,7 +120,7 @@ export const subscriptions: Subscription[] = [
     frequency: 'monthly',
     renewalDate: '25 mai',
     renewalDay: 25,
-    badge: 'zombie',
+    badge: 'non-utilise',
     daysUntilRenewal: 25,
     color: '#7B61FF',
     icon: 'C',
@@ -166,7 +166,7 @@ export const subscriptions: Subscription[] = [
     frequency: 'monthly',
     renewalDate: '10 mai',
     renewalDay: 10,
-    badge: 'zombie',
+    badge: 'non-utilise',
     daysUntilRenewal: 10,
     color: '#113CCF',
     icon: 'D',
@@ -236,6 +236,6 @@ export const upcomingRenewals = subscriptions.filter(
   (s) => s.daysUntilRenewal !== null && s.daysUntilRenewal <= 7
 );
 
-export const zombieSubscriptions = subscriptions.filter(
-  (s) => s.badge === 'zombie'
+export const unusedSubscriptions = subscriptions.filter(
+  (s) => s.badge === 'non-utilise'
 );

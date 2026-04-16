@@ -38,7 +38,7 @@ export function SubscriptionDetail() {
     );
   }
 
-  const isZombie = sub.badge === 'zombie';
+  const isUnused = sub.badge === 'non-utilise';
   const yearlyTotal = sub.price * 12;
 
   return (
@@ -121,10 +121,10 @@ export function SubscriptionDetail() {
               <span style={{ color: '#9BA3C7', fontSize: '13px' }}>
                 {sub.category}
               </span>
-              {sub.badge && sub.badge === 'zombie' && (
-                <Badge variant="zombie" />
+              {sub.badge && sub.badge === 'non-utilise' && (
+                <Badge variant="non-utilise" />
               )}
-              {sub.daysUntilRenewal !== null && sub.daysUntilRenewal <= 16 && sub.badge !== 'zombie' && (
+              {sub.daysUntilRenewal !== null && sub.daysUntilRenewal <= 16 && sub.badge !== 'non-utilise' && (
                 <Badge variant="days" days={sub.daysUntilRenewal} />
               )}
             </div>
@@ -227,10 +227,10 @@ export function SubscriptionDetail() {
           <div
             style={{
               borderRadius: '16px',
-              background: isZombie
+              background: isUnused
                 ? 'rgba(255, 90, 95, 0.06)'
                 : 'rgba(18, 26, 58, 0.6)',
-              border: isZombie
+              border: isUnused
                 ? '1px solid rgba(255, 90, 95, 0.2)'
                 : '1px solid rgba(255,255,255,0.06)',
               padding: '16px',
@@ -245,7 +245,7 @@ export function SubscriptionDetail() {
                 width: '36px',
                 height: '36px',
                 borderRadius: '10px',
-                background: isZombie
+                background: isUnused
                   ? 'rgba(255, 90, 95, 0.12)'
                   : 'rgba(46, 213, 115, 0.12)',
                 display: 'flex',
@@ -254,12 +254,12 @@ export function SubscriptionDetail() {
                 flexShrink: 0,
               }}
             >
-              <Clock size={16} color={isZombie ? '#FF5A5F' : '#2ED573'} />
+              <Clock size={16} color={isUnused ? '#FF5A5F' : '#2ED573'} />
             </div>
             <div>
               <div
                 style={{
-                  color: isZombie ? '#FF5A5F' : '#FFFFFF',
+                  color: isUnused ? '#FF5A5F' : '#FFFFFF',
                   fontSize: '14px',
                   fontWeight: 600,
                 }}
@@ -273,8 +273,8 @@ export function SubscriptionDetail() {
           </div>
         )}
 
-        {/* Zombie warning */}
-        {isZombie && (
+        {/* Non utilisé warning */}
+        {isUnused && (
           <div
             style={{
               borderRadius: '16px',
@@ -296,7 +296,7 @@ export function SubscriptionDetail() {
               <span
                 style={{ color: '#FF5A5F', fontSize: '15px', fontWeight: 700 }}
               >
-                Abonnement zombie 🧟
+                Abonnement non utilisé
               </span>
             </div>
             <p style={{ color: '#9BA3C7', fontSize: '13px', lineHeight: 1.5 }}>
@@ -316,7 +316,7 @@ export function SubscriptionDetail() {
               width: '100%',
               padding: '18px',
               borderRadius: '16px',
-              background: isZombie
+              background: isUnused
                 ? 'linear-gradient(135deg, #FF5A5F, #FF3B3B)'
                 : 'linear-gradient(135deg, #FF5A5F, #FF9F43)',
               border: 'none',

@@ -4,7 +4,7 @@ import { Search, Filter } from 'lucide-react';
 import { subscriptions, realMonthly } from '../data/subscriptions';
 import { SubscriptionItem } from '../components/SubscriptionItem';
 
-const categories = ['Tous', 'Zombie', 'Actif', 'Divertissement', 'Musique', 'Sport & Bien-être'];
+const categories = ['Tous', 'Non utilisé', 'Actif', 'Divertissement', 'Musique', 'Sport & Bien-être'];
 
 export function Abonnements() {
   const [search, setSearch] = useState('');
@@ -13,15 +13,15 @@ export function Abonnements() {
 
   const filtered = subscriptions.filter((s) => {
     const matchSearch = s.name.toLowerCase().includes(search.toLowerCase());
-    if (activeFilter === 'Zombie') return matchSearch && s.badge === 'zombie';
-    if (activeFilter === 'Actif') return matchSearch && s.badge !== 'zombie';
+    if (activeFilter === 'Non utilisé') return matchSearch && s.badge === 'non-utilise';
+    if (activeFilter === 'Actif') return matchSearch && s.badge !== 'non-utilise';
     if (activeFilter !== 'Tous') return matchSearch && s.category === activeFilter;
     return matchSearch;
   });
 
-  const zombieCount = subscriptions.filter((s) => s.badge === 'zombie').length;
-  const zombieCost = subscriptions
-    .filter((s) => s.badge === 'zombie')
+  const unusedCount = subscriptions.filter((s) => s.badge === 'non-utilise').length;
+  const unusedCost = subscriptions
+    .filter((s) => s.badge === 'non-utilise')
     .reduce((sum, s) => sum + s.price, 0);
 
   return (
@@ -109,10 +109,10 @@ export function Abonnements() {
         ))}
       </div>
 
-      {/* Zombie warning banner */}
-      {activeFilter !== 'Zombie' && zombieCount > 0 && (
+      {/* Non utilisé warning banner */}
+      {activeFilter !== 'Non utilisé' && unusedCount > 0 && (
         <div
-          onClick={() => setActiveFilter('Zombie')}
+          onClick={() => setActiveFilter('Non utilisé')}
           style={{
             borderRadius: '14px',
             background: 'rgba(255, 90, 95, 0.08)',
@@ -125,13 +125,13 @@ export function Abonnements() {
             cursor: 'pointer',
           }}
         >
-          <span style={{ fontSize: '20px' }}>🧟</span>
+          <span style={{ fontSize: '20px' }}>⚠️</span>
           <div>
             <div style={{ color: '#FF5A5F', fontSize: '14px', fontWeight: 600 }}>
-              {zombieCount} abonnement{zombieCount > 1 ? 's' : ''} zombie détecté{zombieCount > 1 ? 's' : ''}
+              {unusedCount} abonnement{unusedCount > 1 ? 's' : ''} non utilisé{unusedCount > 1 ? 's' : ''} détecté{unusedCount > 1 ? 's' : ''}
             </div>
             <div style={{ color: '#9BA3C7', fontSize: '12px' }}>
-              Tu dépenses {zombieCost}€/mois sans les utiliser
+              Tu dépenses {unusedCost}€/mois sans les utiliser
             </div>
           </div>
         </div>

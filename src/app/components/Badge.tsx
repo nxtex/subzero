@@ -1,6 +1,6 @@
 import React from 'react';
 
-type BadgeVariant = 'zombie' | 'renewal' | 'info' | 'days';
+type BadgeVariant = 'non-utilise' | 'renewal' | 'info' | 'days';
 
 interface BadgeProps {
   variant: BadgeVariant;
@@ -9,7 +9,7 @@ interface BadgeProps {
 }
 
 export function Badge({ variant, label, days }: BadgeProps) {
-  if (variant === 'zombie') {
+  if (variant === 'non-utilise') {
     return (
       <span
         style={{
@@ -21,10 +21,10 @@ export function Badge({ variant, label, days }: BadgeProps) {
           fontSize: '11px',
           fontWeight: 600,
           letterSpacing: '0.05em',
-          animation: 'pulse-zombie 2s infinite',
+          animation: 'pulse-non-utilise 2s infinite',
         }}
       >
-        🧟 ZOMBIE
+        NON UTILISÉ
       </span>
     );
   }

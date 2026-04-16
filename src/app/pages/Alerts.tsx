@@ -22,7 +22,7 @@ export function Alerts() {
       s.daysUntilRenewal > 7 &&
       s.daysUntilRenewal <= 30
   );
-  const zombieAlerts = subscriptions.filter((s) => s.badge === 'zombie');
+  const unusedAlerts = subscriptions.filter((s) => s.badge === 'non-utilise');
 
   const getAlertColor = (days: number | null) => {
     if (days === null) return '#9BA3C7';
@@ -85,7 +85,7 @@ export function Alerts() {
             {name}
           </div>
           <div style={{ color: '#9BA3C7', fontSize: '12px' }}>
-            {days !== null ? `Renouvellement dans ${days} jour${days > 1 ? 's' : ''}` : 'Abonnement zombie'}
+            {days !== null ? `Renouvellement dans ${days} jour${days > 1 ? 's' : ''}` : 'Abonnement non utilisé'}
           </div>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '4px' }}>
@@ -291,11 +291,11 @@ export function Alerts() {
         </div>
       )}
 
-      {/* Zombies */}
-      {zombieAlerts.length > 0 && (
+      {/* Abonnements non utilisés */}
+      {unusedAlerts.length > 0 && (
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
-            <span style={{ fontSize: '14px' }}>🧟</span>
+            <AlertTriangle size={14} color="#FF5A5F" />
             <span
               style={{
                 color: '#FF5A5F',
@@ -305,10 +305,10 @@ export function Alerts() {
                 textTransform: 'uppercase',
               }}
             >
-              Abonnements zombies
+              Abonnements non utilisés
             </span>
           </div>
-          {zombieAlerts.map((s) => (
+          {unusedAlerts.map((s) => (
             <AlertItem
               key={s.id}
               id={s.id}
